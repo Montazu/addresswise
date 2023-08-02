@@ -9,7 +9,7 @@ export const Textarea = ({ label, name, placeholder, setValue, value }: InputPro
 			className="w-full rounded-md p-2 text-sm"
 			id={name}
 			name={name}
-			onChange={e => setValue(e.target.value)}
+			onChange={(e) => setValue(e.target.value)}
 			placeholder={placeholder}
 			required
 			rows={4}

@@ -14,6 +14,6 @@ export interface Shipment {
 interface ShipmentContext {
 	shipments: Shipment[]
 	setShipments: React.Dispatch<React.SetStateAction<Shipment[]>>
-}	
+}
 
 export const ShipmentContext = createContext<ShipmentContext | null>(null)

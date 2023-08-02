@@ -6,8 +6,6 @@ export const MainLayout = ({ children }: { children: ReactNode }) => (
 		<div className="h-auto rounded-lg bg-gray-200 p-4">
 			<Form />
 		</div>
-		<div className="h-full overflow-hidden rounded-lg bg-gray-200 p-4">
-			{children}
-		</div>
+		<div className="h-full overflow-hidden rounded-lg bg-gray-200 p-4">{children}</div>
 	</div>
 )

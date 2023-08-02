@@ -22,9 +22,7 @@ export const App = () => {
 									className="grid grid-cols-[1fr_auto] gap-1 rounded-md bg-white p-2"
 									key={shipment.id}
 								>
-									<header className="text-sm">
-										{shipment.invoiceNumbers}
-									</header>
+									<header className="text-sm">{shipment.invoiceNumbers}</header>
 									<SecondaryIconButton src={editIcon} />
 									<p>{shipment.recipientAddress}</p>
 									<PrimaryIconButton src={deleteIcon} />
@@ -32,8 +30,11 @@ export const App = () => {
 							))}
 						</ul>
 						<div className="flex flex-wrap justify-end gap-1 pt-2">
-							<PrimaryButton label='Listy' onClick={() => console.log('elo')} />
-							<SecondaryButton label='Potwierdzenia odbioru' onClick={() => console.log('elo')} />
+							<PrimaryButton label="Listy" onClick={() => console.log('elo')} />
+							<SecondaryButton
+								label="Potwierdzenia odbioru"
+								onClick={() => console.log('elo')}
+							/>
 						</div>
 					</div>
 				) : (

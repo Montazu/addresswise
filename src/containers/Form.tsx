@@ -14,13 +14,27 @@ export const Form = () => {
 	const { addShipment } = useShipment()
 
 	useEffect(() => {
-		isSavedSenderAddress 
-			? localStorage.setItem('senderAddress', senderAddress) 
+		isSavedSenderAddress
+			? localStorage.setItem('senderAddress', senderAddress)
 			: localStorage.clear()
-	  }, [senderAddress, isSavedSenderAddress])
+	}, [senderAddress, isSavedSenderAddress])
 
 	return (
-		<form className="flex flex-col gap-3">
+		<form
+			className="flex flex-col gap-3"
+			onSubmit={(e) => {
+				e.preventDefault()
+				addShipment({
+					id: new Date().getTime(),
+					invoiceNumbers,
+					senderAddress,
+					recipientAddress,
+				})
+				setInvoiceNumbers('')
+				setRecipientAddress('')
+				!isSavedSenderAddress && setSenderAddress('')
+			}}
+		>
 			<Textarea
 				label="Adres nadawcy"
 				name="senderAddress"
@@ -48,22 +62,7 @@ export const Form = () => {
 				setValue={setRecipientAddress}
 				value={recipientAddress}
 			/>
-			<PrimaryButton 
-				label="Dodaj"
-				onClick={e => {
-					e.preventDefault()
-					addShipment({ 
-						id: new Date().getTime(),
-						invoiceNumbers,
-						senderAddress,
-						recipientAddress
-					})
-					setInvoiceNumbers('')
-					setSenderAddress('')
-					setRecipientAddress('')
-					if (!setIsSavedSenderAddress) setSenderAddress('')
-				}} 
-				type="submit" />
+			<PrimaryButton label="Dodaj" type="submit" />
 		</form>
 	)
 }
