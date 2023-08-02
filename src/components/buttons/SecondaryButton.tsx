@@ -4,9 +4,9 @@ interface ButtonProps {
 	type?: "submit"
 }
 
-export const PrimaryButton = ({ label, onClick, type }: ButtonProps) => (
+export const SecondaryButton = ({ label, onClick, type }: ButtonProps) => (
 	<button
-		className="self-end rounded-md bg-indigo-600 px-8 py-3 text-sm text-white"
+		className="self-end rounded-md border border-current px-8 py-3 text-sm text-indigo-600"
 		onClick={e => onClick(e)}
 		type={type}>
 		{label}
