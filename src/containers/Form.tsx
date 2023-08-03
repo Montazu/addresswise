@@ -1,46 +1,38 @@
 import { useEffect, useState } from 'react'
-import { useShipment } from '../hooks/useShipment'
-import { Button } from '../components/buttons/Button'
-import { Checkbox } from '../components/inputs/Checkbox'
-import { Input } from '../components/inputs/Input'
-import { Textarea } from '../components/inputs/Textarea'
+import { useShipment } from '@hooks/useShipment'
+import { Button } from '@components/buttons'
+import { Checkbox, Input, Textarea } from '@components/inputs'
 
 export const Form = () => {
 	const savedSenderAddress = localStorage.getItem('senderAddress')
-	const [invoiceNumbers, setInvoiceNumbers] = useState('')
 	const [isSavedSenderAddress, setIsSavedSenderAddress] = useState(Boolean(savedSenderAddress))
-	const [senderAddress, setSenderAddress] = useState(savedSenderAddress || '')
-	const [recipientAddress, setRecipientAddress] = useState('')
-	const { addShipment } = useShipment()
+	const { addShipment, formData, setFormData } = useShipment()
 
 	useEffect(() => {
 		isSavedSenderAddress
-			? localStorage.setItem('senderAddress', senderAddress)
+			? localStorage.setItem('senderAddress', formData.senderAddress)
 			: localStorage.clear()
-	}, [senderAddress, isSavedSenderAddress])
+	}, [formData.senderAddress, isSavedSenderAddress])
 
 	return (
 		<form
 			className="flex flex-col gap-3"
 			onSubmit={(e) => {
 				e.preventDefault()
-				addShipment({
-					id: new Date().getTime(),
-					invoiceNumbers,
-					senderAddress,
-					recipientAddress,
+				addShipment()
+				setFormData({
+					invoiceNumbers: '',
+					senderAddress: isSavedSenderAddress ? formData.senderAddress : '',
+					recipientAddress: '',
 				})
-				setInvoiceNumbers('')
-				setRecipientAddress('')
-				!isSavedSenderAddress && setSenderAddress('')
 			}}
 		>
 			<Textarea
 				label="Adres nadawcy"
 				name="senderAddress"
 				placeholder="Wpisz adres nadawcy"
-				setValue={setSenderAddress}
-				value={senderAddress}
+				setValue={(e) => setFormData({ ...formData, senderAddress: e })}
+				value={formData.senderAddress}
 			/>
 			<Checkbox
 				label="Zapamiętaj adres nadawcy"
@@ -52,15 +44,15 @@ export const Form = () => {
 				label="Numery faktur"
 				name="invoiceNumbers"
 				placeholder="Wpisz numery faktur"
-				setValue={setInvoiceNumbers}
-				value={invoiceNumbers}
+				setValue={(e) => setFormData({ ...formData, invoiceNumbers: e })}
+				value={formData.invoiceNumbers}
 			/>
 			<Textarea
 				label="Adres odbiorcy"
 				name="recipientAddress"
 				placeholder="Wpisz adres odbiorcy"
-				setValue={setRecipientAddress}
-				value={recipientAddress}
+				setValue={(e) => setFormData({ ...formData, recipientAddress: e })}
+				value={formData.recipientAddress}
 			/>
 			<Button label="Dodaj" type="submit" variant="filled" />
 		</form>

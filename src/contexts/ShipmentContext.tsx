@@ -1,19 +1,25 @@
 import { createContext } from 'react'
 
-export type invoiceNumbers = string
-export type senderAddress = string
-export type recipientAddress = string
+export type Id = number
+export type InvoiceNumbers = string
+export type SenderAddress = string
+export type RecipientAddress = string
 
-export interface Shipment {
-	id: number
-	invoiceNumbers: invoiceNumbers
-	senderAddress: senderAddress
-	recipientAddress: recipientAddress
+export interface FormData {
+	invoiceNumbers: InvoiceNumbers
+	senderAddress: SenderAddress
+	recipientAddress: RecipientAddress
+}
+
+export interface Shipment extends FormData {
+	id: Id
 }
 
 interface ShipmentContext {
 	shipments: Shipment[]
 	setShipments: React.Dispatch<React.SetStateAction<Shipment[]>>
+	formData: FormData
+	setFormData: React.Dispatch<React.SetStateAction<FormData>>
 }
 
 export const ShipmentContext = createContext<ShipmentContext | null>(null)

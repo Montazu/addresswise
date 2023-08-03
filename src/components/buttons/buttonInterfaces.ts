@@ -8,6 +8,7 @@ export interface ButtonProps {
 
 export interface IconButtonProps {
 	alt: string
+	onClick?: () => void
 	src: string
 	variant: variant
 }
