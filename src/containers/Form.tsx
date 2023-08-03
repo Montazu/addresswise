@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
+import { useShipment } from '../hooks/useShipment'
+import { Button } from '../components/buttons/Button'
 import { Checkbox } from '../components/inputs/Checkbox'
 import { Input } from '../components/inputs/Input'
-import { PrimaryButton } from '../components/buttons/PrimaryButton'
 import { Textarea } from '../components/inputs/Textarea'
-import { useShipment } from '../hooks/useShipment'
 
 export const Form = () => {
 	const savedSenderAddress = localStorage.getItem('senderAddress')
@@ -62,7 +62,7 @@ export const Form = () => {
 				setValue={setRecipientAddress}
 				value={recipientAddress}
 			/>
-			<PrimaryButton label="Dodaj" type="submit" />
+			<Button label="Dodaj" type="submit" variant="filled" />
 		</form>
 	)
 }

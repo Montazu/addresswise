@@ -1,12 +1,10 @@
 import { useState } from 'react'
 import { Shipment, ShipmentContext } from './contexts/ShipmentContext'
 import { MainLayout } from './layouts/MainLayout'
-import { PrimaryButton } from './components/buttons/PrimaryButton'
-import { SecondaryButton } from './components/buttons/SecondaryButton'
-import { SecondaryIconButton } from './components/buttons/SecondaryIconButton'
-import { PrimaryIconButton } from './components/buttons/PrimaryIconButton'
 import deleteIcon from './assets/delete.svg'
 import editIcon from './assets/edit.svg'
+import { Button } from './components/buttons/Button'
+import { IconButton } from './components/buttons/IconButton'
 
 export const App = () => {
 	const [shipments, setShipments] = useState<Shipment[]>([])
@@ -23,18 +21,23 @@ export const App = () => {
 									key={shipment.id}
 								>
 									<header className="text-sm">{shipment.invoiceNumbers}</header>
-									<SecondaryIconButton src={editIcon} />
+									<IconButton
+										alt="Ikona edycji"
+										src={editIcon}
+										variant="outlined"
+									/>
 									<p>{shipment.recipientAddress}</p>
-									<PrimaryIconButton src={deleteIcon} />
+									<IconButton
+										alt="Ikona kosza"
+										src={deleteIcon}
+										variant="filled"
+									/>
 								</li>
 							))}
 						</ul>
 						<div className="flex flex-wrap justify-end gap-1 pt-2">
-							<PrimaryButton label="Listy" onClick={() => console.log('elo')} />
-							<SecondaryButton
-								label="Potwierdzenia odbioru"
-								onClick={() => console.log('elo')}
-							/>
+							<Button label="Listy" variant="filled" />
+							<Button label="Potwierdzenia odbioru" variant="outlined" />
 						</div>
 					</div>
 				) : (
