@@ -2,6 +2,7 @@ type variant = 'filled' | 'outlined'
 
 export interface ButtonProps {
 	label: string
+	onClick?: () => void
 	type?: 'submit'
 	variant: variant
 }

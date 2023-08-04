@@ -2,8 +2,10 @@ import { useShipment } from '@hooks/useShipment'
 import { Button, IconButton } from '@components/buttons'
 import deleteIcon from '@assets/delete.svg'
 import editIcon from '@assets/edit.svg'
+import { PDFGenerator } from 'utils/pdfGenerator'
 
 export const List = () => {
+	const pdf = new PDFGenerator()
 	const { shipments, editShipment, deleteShipment } = useShipment()
 
 	return (
@@ -32,8 +34,16 @@ export const List = () => {
 				))}
 			</ul>
 			<div className="flex flex-wrap justify-end gap-1 pt-2">
-				<Button label="Listy" variant="filled" />
-				<Button label="Potwierdzenia odbioru" variant="outlined" />
+				<Button
+					label="Listy"
+					onClick={() => pdf.generateLetter(shipments)}
+					variant="filled"
+				/>
+				<Button
+					label="Potwierdzenia odbioru"
+					onClick={() => pdf.generateConfirmation(shipments)}
+					variant="outlined"
+				/>
 			</div>
 		</div>
 	)
