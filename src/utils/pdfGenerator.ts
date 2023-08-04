@@ -7,7 +7,7 @@ export class PDFGenerator {
 		const doc = new jsPDF({
 			unit: 'mm',
 			format: 'a4',
-			compress: true
+			compress: true,
 		})
 		doc.setFont('Montserrat', 'normal')
 		shipments.forEach((shipment, index) => {
@@ -24,7 +24,7 @@ export class PDFGenerator {
 		const doc = new jsPDF({
 			unit: 'mm',
 			format: 'a4',
-			compress: true
+			compress: true,
 		})
 		doc.setFont('Montserrat', 'normal')
 		shipments.forEach((shipment, index) => {
